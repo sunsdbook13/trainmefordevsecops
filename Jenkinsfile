@@ -23,6 +23,7 @@ agent any
          * docker build on the command line */
       steps{    
         sh 'echo Build and Tag'
+        app=docker.build("sunsdbook13/snake:${env.BUILD_ID}")
           }
     }
 

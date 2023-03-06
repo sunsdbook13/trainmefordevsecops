@@ -1,5 +1,5 @@
 pipeline {
-agent any 
+agent { label 'docker' }
 
    stages {
 
@@ -26,7 +26,7 @@ agent any
         script {
           app= docker.build("sunsdbook13/snake:${env.BUILD_ID}")
         }
-          }
+      }
     }
 
     stage('Post-to-dockerhub') {

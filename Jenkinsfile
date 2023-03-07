@@ -49,8 +49,8 @@ agent { label 'docker' }
     stage('Pull-image-server') {
       steps {
          sh 'echo pulling image ...'
-         sh 'docker-compose down'
-         sh 'docker-compose up'
+         sh 'docker compose down'
+         sh 'docker compose up'
        }
       }
     

@@ -30,9 +30,14 @@ agent { label 'docker' }
     }
 
     stage('Post-to-dockerhub') {
-     steps {
+      steps {
         sh 'echo post to dockerhub repo'
-     }
+        script {
+          docker.withRegistry('https://registry.hub.docker.com','docker-hub') {
+            app.push("${env.BUILD_ID}")
+          }
+        }
+      }
     }
 
     stage('SECURITY-IMAGE-SCANNER'){
@@ -44,6 +49,8 @@ agent { label 'docker' }
     stage('Pull-image-server') {
       steps {
          sh 'echo pulling image ...'
+         sh 'docker-compose down'
+         sh 'docker-compose up'
        }
       }
     
